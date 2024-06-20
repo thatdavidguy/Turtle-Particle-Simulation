@@ -15,7 +15,9 @@ def create_turtles(n):
     for _ in range(n):
         new_turtle = turtle.Turtle()
         new_turtle.speed("fastest")
-
+        new_turtle.penup()
+        new_turtle.goto(-300, 300)
+        new_turtle.pendown()
         # Set a random shape and color for the turtle
         shape = "turtle" #random.choice(["turtle", "arrow", "circle", "square"])
         hue = random.uniform(0, 1)
@@ -81,7 +83,7 @@ def move(turtl, angle, forward_distance):
     turtl.pendown()
 
 # Example usage:
-n = 20 # Number of turtles to create
+n = 200 # Number of turtles to create
 steps = 1000000
 turtle_list = create_turtles(n)
 coords = []
@@ -93,9 +95,9 @@ for step in range(steps):
     move_forward = []
     move_angle = []
     for i in range(len(turtle_list)):
-        net_strength = random.randint(0, 50)
-        net_angle = random.randint(0, 360)
-        forward = net_strength
+        net_strength = random.randint(0, 20)
+        net_angle = step#random.randint(0, 180)
+        forward = net_strength#step#net_strength
         move_forward.append(forward)
         move_angle.append(net_angle)
 
