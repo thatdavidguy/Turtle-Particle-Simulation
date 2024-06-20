@@ -1,12 +1,11 @@
 import turtle
 import random
 import colorsys
-
+import math
 
 # Set screen dimensions
 screen_width = turtle.window_width()
 screen_height = turtle.window_height()
-
 
 def create_turtles(n):
     turtle_list = []
@@ -29,14 +28,7 @@ def create_turtles(n):
 
     return turtle_list
 
-# Example usage:
-n = 10 # Number of turtles to create
-turtle_list = create_turtles(n)
 
-def random_move():
-    forward = random.randint(0, 50)
-    angle = random.randint(0, 360)
-    return(forward,angle)
 
 def move(turtl, angle, forward_distance):
     
@@ -44,7 +36,7 @@ def move(turtl, angle, forward_distance):
     y = turtl.ycor()
 
     # Simulate the turtle's movement
-    #turtl.setheading(90)
+    turtl.setheading(0)
 
     if angle <= 180:
         turtl.left(angle)
@@ -88,12 +80,34 @@ def move(turtl, angle, forward_distance):
         #turtl.goto(-(screen_width / 2) + diff, y) 
     turtl.pendown()
 
+# Example usage:
+n = 20 # Number of turtles to create
+steps = 1000000
+turtle_list = create_turtles(n)
+coords = []
+for i in range(len(turtle_list)):
+    coords.append([])
+for i in range(len(turtle_list)):
+    coords[i] = [turtle_list[i].xcor(),turtle_list[i].ycor()]
+for step in range(steps):
+    move_forward = []
+    move_angle = []
+    for i in range(len(turtle_list)):
+        net_strength = random.randint(0, 50)
+        net_angle = random.randint(0, 360)
+        forward = net_strength
+        move_forward.append(forward)
+        move_angle.append(net_angle)
 
-while True:
-    for i in turtle_list:
-        forward,angle = random_move()
-        move(i,angle,forward)
-        
+    turtle.delay(0)
+    for i in range(len(turtle_list)):
+        move(turtle_list[i] ,-move_angle[i],move_forward[i])
+        coords[i] =[turtle_list[i].xcor(),turtle_list[i].ycor()]
+
+    
+
+    
+    
 
     
 
